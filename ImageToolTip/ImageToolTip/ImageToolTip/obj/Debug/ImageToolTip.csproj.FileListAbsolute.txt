@@ -1,0 +1,15 @@
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\bin\Debug\ImageToolTip.exe.config
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\bin\Debug\ImageToolTip.exe
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\bin\Debug\ImageToolTip.pdb
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.csprojAssemblyReference.cache
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\MainWindow.g.cs
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\App.g.cs
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip_MarkupCompile.cache
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip_MarkupCompile.lref
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\MainWindow.baml
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.g.resources
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.Properties.Resources.resources
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.csproj.GenerateResource.cache
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.csproj.CoreCompileInputs.cache
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.exe
+C:\Dev\TestProject\ImageToolTip\ImageToolTip\ImageToolTip\obj\Debug\ImageToolTip.pdb
