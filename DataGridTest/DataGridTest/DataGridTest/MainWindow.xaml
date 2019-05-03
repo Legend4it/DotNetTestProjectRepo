@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox Text="Hello DataGrid...!"/>
+        <DataGrid ItemsSource="{Binding}" 
+                  AutoGenerateColumns="False" 
+                  Height="193" 
+                  CanUserAddRows="False" 
+                  HorizontalAlignment="Left" 
+                  Margin="48,12,0,0" 
+                  Name="dataGrid1" 
+                  VerticalAlignment="Top" 
+                  Width="360" 
+                  PreviewKeyDown="dataGrid1_KeyDown"
+                  MouseRightButtonDown="DataGrid1_OnMouseRightButtonDown"
+                  BeginningEdit="DataGrid1_OnBeginningEdit"
+                  RowEditEnding="DataGrid1_OnRowEditEnding">
+
+                    <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+
+                    </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
