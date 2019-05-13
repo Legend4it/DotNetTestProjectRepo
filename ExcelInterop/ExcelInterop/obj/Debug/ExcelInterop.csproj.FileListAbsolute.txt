@@ -12,3 +12,5 @@ C:\Dev\DotNetTestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.csproj
 C:\Dev\DotNetTestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.csproj.CoreCompileInputs.cache
 C:\Dev\DotNetTestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.exe
 C:\Dev\DotNetTestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.pdb
+C:\Dev\DotNetTestProject\ExcelInterop\ExcelInterop\bin\Debug\System.ValueTuple.dll
+C:\Dev\DotNetTestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.csproj.CopyComplete
