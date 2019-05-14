@@ -42,28 +42,13 @@ namespace ExcelInterop
 
             Sheets sheets = wb.Worksheets;
             Worksheet worksheet = (Worksheet) sheets.Item[1];
-            var test = worksheet.get_Range("D5:B14");
+            var test = worksheet.Range["D5:B14"];
             var test02 = (test.Find("Conveyor type") as Range);
-            var test03 = test02.get_AddressLocal(false, false, Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1);
+            var test03 = test02.AddressLocal[false, false, Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1];
             Debug.WriteLine($"Sheet Name: {worksheet.Name}");
 
             //Get cell value
             Range excelRange = worksheet.UsedRange;
-
-
-
-
-            //var conveyorTypeCell = (string)(worksheet.Cells[5, 3] as Range).Value;
-            //var totalLengthOfTheConveyorCell = (double)(worksheet.Cells[6, 3] as Range).Value;
-            //var nrOfTheConveyorCell = (double)(worksheet.Cells[7, 3] as Range).Value;
-            //var nrOfBendsInTheSystemCell = (double)(worksheet.Cells[8, 3] as Range).Value;
-            //var tSlotCoveringCell = (string)(worksheet.Cells[9, 3] as Range).Value;
-            //var steelSlideRailCell = (string)(worksheet.Cells[10, 3] as Range).Value;
-            //var typeOfSupportsCell = (string)(worksheet.Cells[11, 3] as Range).Value;
-            //var nrOdSupportCell = (string)(worksheet.Cells[11, 3] as Range).Value;
-            //var distanceBetweenTheSupportsCell = (double)(worksheet.Cells[12, 3] as Range).Value;
-            //var assemplyOnTheHeightCell = (string)(worksheet.Cells[13, 3] as Range).Value;
-            //var connectionOfTwoConveyorBeamCell = (string)(worksheet.Cells[114, 3] as Range).Value;
 
 
             var cellsTuple =(
