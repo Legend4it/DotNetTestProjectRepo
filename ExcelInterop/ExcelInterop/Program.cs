@@ -51,7 +51,7 @@ namespace ExcelInterop
             Range excelRange = worksheet.UsedRange;
 
 
-            var cellsTuple =(
+            var cellsTuple = (
             conveyorTypeCell: (string)(worksheet.Cells[5, 3] as Range).Value,
             totalLengthOfTheConveyorCell: (double)(worksheet.Cells[6, 3] as Range).Value,
             nrOfTheConveyorCell: (double)(worksheet.Cells[7, 3] as Range).Value,
