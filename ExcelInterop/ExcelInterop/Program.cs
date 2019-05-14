@@ -15,17 +15,17 @@ namespace ExcelInterop
         {
             var task = Task.Factory.StartNew(() =>
             {
-                Thread.CurrentThread.Name = "Excel Interop";
+                Thread.CurrentThread.Name = "ExcelInterop2019";
                 AssemblyHoursExcelTask();
             });
             task.Wait();
-
+            task.Dispose();
             Console.ReadLine();
         }
 
         private static void AssemblyHoursExcelTask()
         {
-            var filePath = @"C:\Dev\DotNetTestProject\ExcelInterop\Assembly_time_calculator.xlsx";
+            var filePath = @"C:\Dev\Source\DotNetTestProjectRepo\ExcelInterop\Assembly_time_calculator.xlsx";
 
 
             Application
@@ -42,31 +42,33 @@ namespace ExcelInterop
 
             Sheets sheets = wb.Worksheets;
             Worksheet worksheet = (Worksheet) sheets.Item[1];
-            var test = worksheet.Range["D5:B14"];
-            var test02 = (test.Find("Conveyor type") as Range);
-            var test03 = test02.AddressLocal[false, false, Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1];
+            //var rangeCells = worksheet.Range["D5:B1"];
+            //var findCell = (rangeCells.Find("Conveyor type") as Range);
+            //var addressForCell = findCell.AddressLocal[false, false, Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1];
+
             Debug.WriteLine($"Sheet Name: {worksheet.Name}");
 
-            //Get cell value
-            Range excelRange = worksheet.UsedRange;
+            ////Get cell value
+            //Range excelRange = worksheet.UsedRange;
 
 
             var cellsTuple = (
-            conveyorTypeCell: (string)(worksheet.Cells[5, 3] as Range).Value,
-            totalLengthOfTheConveyorCell: (double)(worksheet.Cells[6, 3] as Range).Value,
-            nrOfTheConveyorCell: (double)(worksheet.Cells[7, 3] as Range).Value,
-            nrOfBendsInTheSystemCell: (double)(worksheet.Cells[8, 3] as Range).Value,
-            tSlotCoveringCell: (string)(worksheet.Cells[9, 3] as Range).Value,
-            steelSlideRailCell: (string)(worksheet.Cells[10, 3] as Range).Value,
-            typeOfSupportsCell: (string)(worksheet.Cells[11, 3] as Range).Value,
-            distanceBetweenTheSupportsCell: (double)(worksheet.Cells[12, 3] as Range).Value,
-            nrOdSupportCell: (double)(worksheet.Cells[12, 4] as Range).Value,
-            assemplyOnTheHeightCell: (string)(worksheet.Cells[13, 3] as Range).Value,
-            connectionOfTwoConveyorBeamCell: (double)(worksheet.Cells[14, 3] as Range).Value
+                conveyorTypeCell: worksheet.Range["$C$5"].Value,
+                totalLengthOfTheConveyorCell: worksheet.Range["$C$6"].Value,
+                nrOfTheConveyorCell: worksheet.Range["$C$7"].Value,
+                nrOfBendsInTheSystemCell: worksheet.Range["$C$8"].Value,
+                tSlotCoveringCell: worksheet.Range["$C$9"].Value,
+                steelSlideRailCell: worksheet.Range["$C$10"].Value,
+                typeOfSupportsCell: worksheet.Range["$C$11"].Value,
+                distanceBetweenTheSupportsCell: worksheet.Range["$C$12"].Value,
+                nrOdSupportCell: worksheet.Range["$D$12"].Value,
+                assemplyOnTheHeightCell: worksheet.Range["$C$13"].Value,
+                connectionOfTwoConveyorBeamCell: worksheet.Range["$C$14"].Value,
+                guideRail: worksheet.Range["$B$292"].Value
             );
 
 
-            var cellResult = (double) (worksheet.Cells[39, 10] as Range)?.Value;
+            var cellResult = worksheet.Range["$J$39"]?.Value;
             Debug.WriteLine($"Value: " +
                             $"{cellsTuple.conveyorTypeCell}\n" +
                             $"{cellsTuple.totalLengthOfTheConveyorCell}\n" +
@@ -79,32 +81,39 @@ namespace ExcelInterop
                             $"{cellsTuple.assemplyOnTheHeightCell}\n" +
                             $"{cellsTuple.distanceBetweenTheSupportsCell}\n" +
                             $"{cellsTuple.connectionOfTwoConveyorBeamCell}" +
+                            $"{cellsTuple.guideRail}" +
                             $"Result: {Math.Round(cellResult)}"
             );
 
 
             //Parse value to cell
-            excelRange.Cells.set_Item(5, 3, "XLX-X85X");
-
+            Range rng = worksheet.Range["$C$5"];
+            rng.Value2 = "XLX-X85X";
+            rng = worksheet.Range["$B$292"];
+            rng.Value2 = true;
+            rng = worksheet.Range["$C$6"];
+            rng.Value2 = 100;
             wb.Save();
 
             cellsTuple = (
-                conveyorTypeCell: (string)(worksheet.Cells[5, 3] as Range).Value,
-                totalLengthOfTheConveyorCell: (double)(worksheet.Cells[6, 3] as Range).Value,
-                nrOfTheConveyorCell: (double)(worksheet.Cells[7, 3] as Range).Value,
-                nrOfBendsInTheSystemCell: (double)(worksheet.Cells[8, 3] as Range).Value,
-                tSlotCoveringCell: (string)(worksheet.Cells[9, 3] as Range).Value,
-                steelSlideRailCell: (string)(worksheet.Cells[10, 3] as Range).Value,
-                typeOfSupportsCell: (string)(worksheet.Cells[11, 3] as Range).Value,
-                distanceBetweenTheSupportsCell: (double)(worksheet.Cells[12, 3] as Range).Value,
-                nrOdSupportCell: (double)(worksheet.Cells[12, 4] as Range).Value,
-                assemplyOnTheHeightCell: (string)(worksheet.Cells[13, 3] as Range).Value,
-                connectionOfTwoConveyorBeamCell: (double)(worksheet.Cells[14, 3] as Range).Value
+                conveyorTypeCell: worksheet.Range["$C$5"].Value,
+                totalLengthOfTheConveyorCell: worksheet.Range["$C$6"].Value,
+                nrOfTheConveyorCell: worksheet.Range["$C$7"].Value,
+                nrOfBendsInTheSystemCell: worksheet.Range["$C$8"].Value,
+                tSlotCoveringCell: worksheet.Range["$C$9"].Value,
+                steelSlideRailCell: worksheet.Range["$C$10"].Value,
+                typeOfSupportsCell: worksheet.Range["$C$11"].Value,
+                distanceBetweenTheSupportsCell: worksheet.Range["$C$12"].Value,
+                nrOdSupportCell: worksheet.Range["$D$12"].Value,
+                assemplyOnTheHeightCell: worksheet.Range["$C$13"].Value,
+                connectionOfTwoConveyorBeamCell: worksheet.Range["$C$14"].Value,
+                guideRail: worksheet.Range["$B$292"].Value
             );
-            cellResult = (double) (worksheet.Cells[39, 10] as Range)?.Value;
+            cellResult = worksheet.Range["$J$39"]?.Value;
 
             Debug.WriteLine($"Value: {cellsTuple.conveyorTypeCell}\n" +
                                    $"{cellsTuple.totalLengthOfTheConveyorCell}\n"+
+                                   $"{cellsTuple.guideRail}\n" +
                                    $"Result: {Math.Round(cellResult)}");
 
             //wb.Save();
