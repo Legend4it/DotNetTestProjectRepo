@@ -13,20 +13,21 @@ namespace ExcelInterop
     {
         static void Main(string[] args)
         {
+            var message = "Hello Thread..!";
             var task = Task.Factory.StartNew(() =>
             {
                 Thread.CurrentThread.Name = "ExcelInterop2019";
-                AssemblyHoursExcelTask();
+                AssemblyHoursExcelTask(message);
             });
             task.Wait();
             task.Dispose();
             Console.ReadLine();
         }
 
-        private static void AssemblyHoursExcelTask()
+        private static void AssemblyHoursExcelTask(string message)
         {
             var filePath = @"C:\Dev\Source\DotNetTestProjectRepo\ExcelInterop\Assembly_time_calculator.xlsx";
-
+            Debug.WriteLine(message);
 
             Application
                 xlAppObject = new Application();
@@ -42,9 +43,29 @@ namespace ExcelInterop
 
             Sheets sheets = wb.Worksheets;
             Worksheet worksheet = (Worksheet) sheets.Item[1];
-            //var rangeCells = worksheet.Range["D5:B1"];
+            var rangeCells = worksheet.Range["J20:L29"];
             //var findCell = (rangeCells.Find("Conveyor type") as Range);
             //var addressForCell = findCell.AddressLocal[false, false, Microsoft.Office.Interop.Excel.XlReferenceStyle.xlA1];
+
+            int i=0;
+            int j=100;
+            foreach (Range cell in rangeCells.Rows)
+            {
+                   Debug.WriteLine($"Column:{cell.Address}");
+                   for (int k = 1; k <= cell.Columns.Count; k++)
+                   {
+                       Debug.WriteLine($"Column: {cell.Columns[k].Address}");
+                       Range cellRng = worksheet.Range[cell.Columns[k].Address];
+                       cellRng.Value2 = j++;
+                   }
+                //foreach (Range cellColumn in cell.Columns)
+                //{
+                //   Debug.WriteLine($"Column: {cellColumn.Address}");
+                //   Range cellRng = worksheet.Range[cellColumn.Address];
+                //   cellRng.Value2 = i++;
+                //}
+                wb.Save();
+            }
 
             Debug.WriteLine($"Sheet Name: {worksheet.Name}");
 
@@ -179,4 +200,5 @@ namespace ExcelInterop
         //    xlAppObject.Quit();
         //}
     }
+
 }
