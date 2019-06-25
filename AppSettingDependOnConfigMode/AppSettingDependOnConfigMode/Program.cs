@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel.Configuration;
 
 namespace AppSettingDependOnConfigMode
 {
@@ -24,18 +26,30 @@ namespace AppSettingDependOnConfigMode
 
             //Read From Section
             Console.WriteLine(devMode.TestProp);
-            Console.ReadLine();
+            //Console.ReadLine();
 
             //Read From AppSetting
             Console.WriteLine(ConfigurationManager.AppSettings["testProp"]);
-            Console.ReadLine();
-
+            //Console.ReadLine();
+            
             //Update AppSetting From Section
             ConfigurationManager.AppSettings["testProp"] = devMode.TestProp;
             Console.WriteLine(ConfigurationManager.AppSettings["testProp"]);
 
             devMode.TestProp = ConfigurationManager.AppSettings["testProp"];
             Console.WriteLine(devMode.TestProp);
+            //Console.ReadLine();
+
+            ClientSection clientSection =
+                ConfigurationManager.GetSection("system.serviceModel/client") as ClientSection;
+
+            ChannelEndpointElementCollection endpointCollection = clientSection?.Endpoints;
+            List<string> endpointNames = new List<string>();
+            foreach (ChannelEndpointElement endpointElement in endpointCollection)
+            {
+                endpointNames.Add(endpointElement.Name);
+            }
+
             Console.ReadLine();
         }
     }
