@@ -19,10 +19,10 @@ namespace ExceptionTest
             
             switch (innerException.GetType().ToString())
             {
-                case "System.IO.IOException":
+                case nameof(System.IO.IOException):
                     HandelException(message, innerException);
                     break;
-                case "System.Exception":
+                case nameof(System.Exception):
                     HandelException(message, innerException);
                     break;
                 default:
