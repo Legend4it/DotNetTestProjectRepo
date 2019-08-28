@@ -48,6 +48,8 @@ namespace AppSettingDependOnConfigMode
             foreach (ChannelEndpointElement endpointElement in endpointCollection)
             {
                 endpointNames.Add(endpointElement.Name);
+                Console.WriteLine($"{endpointElement.Name} : {endpointElement.Address}");
+                Console.WriteLine($"{endpointElement.Binding}");
             }
 
             Console.ReadLine();
