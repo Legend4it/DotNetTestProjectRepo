@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestWinFormWhite", "Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormApp", "WinFormApp\WinFormApp.csproj", "{83BBE541-487B-45BC-8500-0B4A613E551A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStack.White", "..\..\..\..\Users\SEAAN0\Documents\White-master\src\TestStack.White\TestStack.White.csproj", "{12C59CE2-9CF7-44F4-B27C-90754609F979}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{83BBE541-487B-45BC-8500-0B4A613E551A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83BBE541-487B-45BC-8500-0B4A613E551A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83BBE541-487B-45BC-8500-0B4A613E551A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12C59CE2-9CF7-44F4-B27C-90754609F979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12C59CE2-9CF7-44F4-B27C-90754609F979}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12C59CE2-9CF7-44F4-B27C-90754609F979}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12C59CE2-9CF7-44F4-B27C-90754609F979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
