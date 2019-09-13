@@ -5,3 +5,5 @@ Install-Package xunit.runner.visualstudio
 Install-Package Castle.Core
 Install-Package nunit.framework
 Install-Package TestStack.White
+
+Add referance for application to test
