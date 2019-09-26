@@ -13,18 +13,19 @@ namespace GetCultureFromString
     {
         static void Main(string[] args)
         {
-            Thread.CurrentThread.CurrentCulture.ClearCachedData();
-            var thread = new Thread(
-                s => ((AppCulture)s).Result = Thread.CurrentThread.CurrentCulture);
-            var state = new AppCulture();
-            thread.Start(state);
-            thread.Join();
-            var culture = state.Result;
+            //Thread.CurrentThread.CurrentCulture.ClearCachedData();
+            //var thread = new Thread(
+            //    s => ((AppCulture)s).Result = Thread.CurrentThread.CurrentCulture);
+            //var state = new AppCulture();
+            //thread.Start(state);
+            //thread.Join();
+            //var culture = state.Result;
 
-            Console.WriteLine(culture.NumberFormat.NumberDecimalSeparator);
-            Console.WriteLine(culture.NumberFormat.NumberGroupSeparator);
+            //Console.WriteLine(culture.NumberFormat.NumberDecimalSeparator);
+            //Console.WriteLine(culture.NumberFormat.NumberGroupSeparator);
 
             var str = new[] {
+                "0.123",
                 "123,456,789.00",
                 "123.456.789,00",
                 "123 456 789,00",
@@ -33,8 +34,7 @@ namespace GetCultureFromString
                 "123,456,789,00",
                 "123'456'789'00",
                 "123 456 789 00",
-                "123 456 789'00",
-                "0.123"};
+                "123 456 789'00"};
 
 
 
@@ -47,7 +47,7 @@ namespace GetCultureFromString
             var culturListInApp = new List<string> { "en-US", "sv-SE", "de-DE", "en-SE" }; //Language list installed in Application
             var separator = Regex.Replace(input, @"[\d-]", string.Empty).Distinct().ToList();
             var culs = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(d => d.NumberFormat.NumberGroupSeparator.Contains(separator.First()) && d.NumberFormat.NumberDecimalSeparator.Contains(separator.Last()) && culturListInApp.Contains(d.Name))
+                .Where(d => (d.NumberFormat.NumberGroupSeparator.Contains(separator.First()) || d.NumberFormat.NumberDecimalSeparator.Contains(separator.Last())) && culturListInApp.Contains(d.Name))
                 .ToDictionary(d => d.Name, d => d.NumberFormat);
 
             decimal result = 0;
@@ -65,7 +65,7 @@ namespace GetCultureFromString
             {
                 Console.WriteLine($"{input} : {e.Message}");
             }
-            Console.WriteLine($"Parse Error: {input} Nr of match Culture: {count}");
+            //Console.WriteLine($"Parse Error: {input} Nr of match Culture: {count}");
 
             return result;
         }
