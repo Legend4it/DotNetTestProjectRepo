@@ -24,34 +24,17 @@ namespace GetCultureFromString
             Console.WriteLine(culture.NumberFormat.NumberDecimalSeparator);
             Console.WriteLine(culture.NumberFormat.NumberGroupSeparator);
 
-            var str = new[] { "123,456,789.00", "123'456'789,00", "123'456'789'00", "123 456 789,00", "123 456 789 00", "123 456 789'00" };
+            var str = new[] { "123,456,789.00", "123 456 789,00", "123'456'789,00", "123'456'789'00", "123 456 789 00", "123 456 789'00" };
 
 
 
-            sTryParseDecimals(str.ToList());
+            str.ToList().ForEach(nr => ParseDecimalWithSymbol(nr));
 
-            //var obj = new
-            //{
-            //    culture.NumberFormat.NumberDecimalSeparator,
-            //    culture.NumberFormat.NumberGroupSeparator,
-            //    culture.NumberFormat.DigitSubstitution,
-            //    culture.NumberFormat.NumberGroupSizes,
-            //    culture.NumberFormat.NumberDecimalDigits
-            //};
-
-
-            //foreach (var nr in str)
-            //{
-            //    Console.WriteLine(nr);
-            //    Decimal value = ParseDecimalNumber(nr, state);
-            //    Console.WriteLine(value.ToString() + "\n");
-            //}
-
-            Console.ReadKey();
             Console.ReadKey();
         }
         public static void TryParseDecimals(List<string> str)
         {
+            var culture = new CultureInfo("en-US");
             NumberStyles style = NumberStyles.AllowLeadingWhite
                                    | NumberStyles.AllowLeadingSign
                                    | NumberStyles.AllowThousands
@@ -61,15 +44,64 @@ namespace GetCultureFromString
                                    ;
             foreach (var item in str)
             {
-                Console.WriteLine(decimal.Parse(item,style,CultureInfo.InvariantCulture));
+                Console.WriteLine(decimal.Parse(item, style, culture));
             }
+        }
+        public static decimal ParseDecimalWithSymbol(string input)
+        {
+            var separator = Regex.Replace(input, @"[\d-]", string.Empty).Distinct().ToList();
+            var culs = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .Where(d => d.NumberFormat.NumberGroupSeparator.Contains(separator.First()) && d.NumberFormat.NumberDecimalSeparator.Contains(separator.Last()))
+                .ToDictionary(d=>d.Name, d=>d.NumberFormat);
+            
+            decimal result = 0;
+            var count = 0;
+            try
+            {
+                foreach (var ci in culs)
+                {
+                    result = decimal.Parse(input, ci.Value);
+                    Console.WriteLine($"{input} =={ci.Key}==> {result}");
+                    count++;
+                }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"{input} : {e.Message}");
+            }
+            Console.WriteLine($"################### {count} ################");
+
+
+            //var cultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
+            //    .GroupBy(d => d.NumberFormat)
+            //    .ToDictionary(d => d.Key, d => d.First());
+
+            //var culture = cultures.Where(d => Regex.Replace(input, @"[\d-]", string.Empty).Contains(d.Key.NumberDecimalSeparator)&& Regex.Replace(input, @"[\d-]", string.Empty).Contains(d.Key.NumberGroupSeparator)).ToList();
+
+            //decimal result = 0;
+            //var count=0;
+            //try
+            //{
+            //    foreach (var ci in culture)
+            //    {
+            //        result = decimal.Parse(input, ci.Value);
+            //        Console.WriteLine($"{input} =={ci.Value}==> {result}");
+            //        count++;
+            //    }
+            //}
+            //catch (FormatException e)
+            //{
+            //    Console.WriteLine($"{input} : {e.Message}");
+            //}
+            //Console.WriteLine($"################### {count} ################");
+            return result;
         }
         public static decimal ParseDecimalNumber(string str, AppCulture culture)
         {
 
             string groupSeparators = "'.," + "¤";
             string decimalPoints = ".,'" + "¤";
-            string s = str.Replace('1','¤');
+            string s = str.Replace('1', '¤');
 
             NumberFormatInfo nfi = (NumberFormatInfo)culture.Result.NumberFormat.Clone();
             NumberStyles style = NumberStyles.AllowLeadingWhite
