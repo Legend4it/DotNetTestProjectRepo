@@ -27,25 +27,42 @@ namespace GetCultureFromString
             var str = new[] { "123,456,789.00", "123'456'789,00", "123'456'789'00", "123 456 789,00", "123 456 789 00", "123 456 789'00" };
 
 
-            var obj = new
-            {
-                culture.NumberFormat.NumberDecimalSeparator,
-                culture.NumberFormat.NumberGroupSeparator,
-                culture.NumberFormat.DigitSubstitution,
-                culture.NumberFormat.NumberGroupSizes,
-                culture.NumberFormat.NumberDecimalDigits
-            };
+
+            sTryParseDecimals(str.ToList());
+
+            //var obj = new
+            //{
+            //    culture.NumberFormat.NumberDecimalSeparator,
+            //    culture.NumberFormat.NumberGroupSeparator,
+            //    culture.NumberFormat.DigitSubstitution,
+            //    culture.NumberFormat.NumberGroupSizes,
+            //    culture.NumberFormat.NumberDecimalDigits
+            //};
 
 
-            foreach (var nr in str)
+            //foreach (var nr in str)
+            //{
+            //    Console.WriteLine(nr);
+            //    Decimal value = ParseDecimalNumber(nr, state);
+            //    Console.WriteLine(value.ToString() + "\n");
+            //}
+
+            Console.ReadKey();
+            Console.ReadKey();
+        }
+        public static void TryParseDecimals(List<string> str)
+        {
+            NumberStyles style = NumberStyles.AllowLeadingWhite
+                                   | NumberStyles.AllowLeadingSign
+                                   | NumberStyles.AllowThousands
+                                   | NumberStyles.AllowDecimalPoint
+                                   | NumberStyles.AllowTrailingSign
+                                   | NumberStyles.AllowTrailingWhite
+                                   ;
+            foreach (var item in str)
             {
-                Console.WriteLine(nr);
-                Decimal value = ParseDecimalNumber(nr, state);
-                Console.WriteLine(value.ToString() + "\n");
+                Console.WriteLine(decimal.Parse(item,style,CultureInfo.InvariantCulture));
             }
-
-            Console.ReadKey();
-            Console.ReadKey();
         }
         public static decimal ParseDecimalNumber(string str, AppCulture culture)
         {
