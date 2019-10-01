@@ -47,7 +47,7 @@ namespace GetCultureFromString
             var culturListInApp = new List<string> { "en-US", "sv-SE", "de-DE", "en-SE" }; //Language list installed in Application
             var separator = Regex.Replace(input, @"[\d-]", string.Empty).Distinct().ToList();
             var culs = CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .Where(d => (d.NumberFormat.NumberGroupSeparator.Contains(separator.First()) || d.NumberFormat.NumberDecimalSeparator.Contains(separator.Last())) && culturListInApp.Contains(d.Name))
+                .Where(d => (d.NumberFormat.NumberGroupSeparator.Contains(separator.FirstOrDefault()) || d.NumberFormat.NumberDecimalSeparator.Contains(separator.LastOrDefault())) && culturListInApp.Contains(d.Name))
                 .ToDictionary(d => d.Name, d => d.NumberFormat);
 
             decimal result = 0;
