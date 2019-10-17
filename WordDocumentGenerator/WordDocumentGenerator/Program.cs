@@ -1,6 +1,7 @@
 
 
-using System.Net.Mime;
+
+
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -12,14 +13,15 @@ namespace WordDocumentGenerator
         static void Main(string[] args)
         {
             string documentPath = @"C:\Dev\HeaderFooterDocument.docx";
-            
-            //HelloWorld(documentPath);
-            using (WordprocessingDocument package =
-                WordprocessingDocument.Create(
-                documentPath, WordprocessingDocumentType.Document))
-            {
-                AddParts(package);
-            }
+            OpenXmlTableTheme openXmlTableTheme=new OpenXmlTableTheme();
+            openXmlTableTheme.CreatePackage(documentPath);
+            ////HelloWorld(documentPath);
+            //using (WordprocessingDocument package =
+            //    WordprocessingDocument.Create(
+            //    documentPath, WordprocessingDocumentType.Document))
+            //{
+            //    AddParts(package);
+            //}
         }
         public static void HelloWorld(string docName)
         {
@@ -41,6 +43,7 @@ namespace WordDocumentGenerator
                 package.MainDocumentPart.Document.Save();
             }
         }
+
         private static void AddParts(WordprocessingDocument parent)
         {
             var mainDocumentPart = parent.AddMainDocumentPart();
@@ -65,29 +68,29 @@ namespace WordDocumentGenerator
             GeneratePageFooterPart(
                 "First page footer").Save(firstPageFooterPart);
 
-            var evenPageHeaderPart =
-                mainDocumentPart.AddNewPart<HeaderPart>("rId4");
+            //var evenPageHeaderPart =
+            //    mainDocumentPart.AddNewPart<HeaderPart>("rId4");
 
-            GeneratePageHeaderPart(
-                "Even page header").Save(evenPageHeaderPart);
+            //GeneratePageHeaderPart(
+            //    "Even page header").Save(evenPageHeaderPart);
 
-            var evenPageFooterPart =
-                mainDocumentPart.AddNewPart<FooterPart>("rId5");
+            //var evenPageFooterPart =
+            //    mainDocumentPart.AddNewPart<FooterPart>("rId5");
 
-            GeneratePageFooterPart(
-                "Even page footer").Save(evenPageFooterPart);
+            //GeneratePageFooterPart(
+            //    "Even page footer").Save(evenPageFooterPart);
 
-            var oddPageheaderPart =
-                mainDocumentPart.AddNewPart<HeaderPart>("rId6");
+            //var oddPageheaderPart =
+            //    mainDocumentPart.AddNewPart<HeaderPart>("rId6");
 
-            GeneratePageHeaderPart(
-                "Odd page header").Save(oddPageheaderPart);
+            //GeneratePageHeaderPart(
+            //    "Odd page header").Save(oddPageheaderPart);
 
-            var oddPageFooterPart =
-                mainDocumentPart.AddNewPart<FooterPart>("rId7");
+            //var oddPageFooterPart =
+            //    mainDocumentPart.AddNewPart<FooterPart>("rId7");
 
-            GeneratePageFooterPart(
-                "Odd page footer").Save(oddPageFooterPart);
+            //GeneratePageFooterPart(
+            //    "Odd page footer").Save(oddPageFooterPart);
         }
 
         private static Document GenerateMainDocumentPart()
@@ -103,38 +106,38 @@ namespace WordDocumentGenerator
                             new Run(
                                 new Break() { Type = BreakValues.Page })
                         ),
-                        new Paragraph(
-                            new Run(
-                                new LastRenderedPageBreak(),
-                                new Text("Page 2 content"))
-                        ),
-                        new Paragraph(
-                            new Run(
-                                new Break() { Type = BreakValues.Page })
-                        ),
-                        new Paragraph(
-                            new Run(
-                                new LastRenderedPageBreak(),
-                                new Text("Page 3 content"))
-                        ),
-                        new Paragraph(
-                            new Run(
-                                new Break() { Type = BreakValues.Page })
-                        ),
-                        new Paragraph(
-                            new Run(
-                                new LastRenderedPageBreak(),
-                                new Text("Page 4 content"))
-                        ),
-                        new Paragraph(
-                            new Run(
-                                new Break() { Type = BreakValues.Page })
-                        ),
-                        new Paragraph(
-                            new Run(
-                                new LastRenderedPageBreak(),
-                                new Text("Page 5 content"))
-                        ),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new LastRenderedPageBreak(),
+                        //        new Text("Page 2 content"))
+                        //),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new Break() { Type = BreakValues.Page })
+                        //),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new LastRenderedPageBreak(),
+                        //        new Text("Page 3 content"))
+                        //),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new Break() { Type = BreakValues.Page })
+                        //),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new LastRenderedPageBreak(),
+                        //        new Text("Page 4 content"))
+                        //),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new Break() { Type = BreakValues.Page })
+                        //),
+                        //new Paragraph(
+                        //    new Run(
+                        //        new LastRenderedPageBreak(),
+                        //        new Text("Page 5 content"))
+                        //),
                         new SectionProperties(
                             new HeaderReference()
                             {
@@ -146,36 +149,36 @@ namespace WordDocumentGenerator
                                 Type = HeaderFooterValues.First,
                                 Id = "rId3"
                             },
-                            new HeaderReference()
-                            {
-                                Type = HeaderFooterValues.Even,
-                                Id = "rId4"
-                            },
-                            new FooterReference()
-                            {
-                                Type = HeaderFooterValues.Even,
-                                Id = "rId5"
-                            },
-                            new HeaderReference()
-                            {
-                                Type = HeaderFooterValues.Default,
-                                Id = "rId6"
-                            },
-                            new FooterReference()
-                            {
-                                Type = HeaderFooterValues.Default,
-                                Id = "rId7"
-                            },
-                            new PageMargin()
-                            {
-                                Top = 1440,
-                                Right = (UInt32Value)1440UL,
-                                Bottom = 1440,
-                                Left = (UInt32Value)1440UL,
-                                Header = (UInt32Value)720UL,
-                                Footer = (UInt32Value)720UL,
-                                Gutter = (UInt32Value)0UL
-                            },
+                            //new HeaderReference()
+                            //{
+                            //    Type = HeaderFooterValues.Even,
+                            //    Id = "rId4"
+                            //},
+                            //new FooterReference()
+                            //{
+                            //    Type = HeaderFooterValues.Even,
+                            //    Id = "rId5"
+                            //},
+                            //new HeaderReference()
+                            //{
+                            //    Type = HeaderFooterValues.Default,
+                            //    Id = "rId6"
+                            //},
+                            //new FooterReference()
+                            //{
+                            //    Type = HeaderFooterValues.Default,
+                            //    Id = "rId7"
+                            //},
+                            //new PageMargin()
+                            //{
+                            //    Top = 1440,
+                            //    Right = (UInt32Value)1440UL,
+                            //    Bottom = 1440,
+                            //    Left = (UInt32Value)1440UL,
+                            //    Header = (UInt32Value)720UL,
+                            //    Footer = (UInt32Value)720UL,
+                            //    Gutter = (UInt32Value)0UL
+                            //},
                             new TitlePage()
                         )));
 
