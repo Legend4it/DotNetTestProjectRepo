@@ -12,9 +12,16 @@ namespace WordDocumentGenerator
     {
         static void Main(string[] args)
         {
-            string documentPath = @"C:\Dev\HeaderFooterDocument.docx";
-            OpenXmlTableTheme openXmlTableTheme=new OpenXmlTableTheme();
-            openXmlTableTheme.CreatePackage(documentPath);
+            string sourceDocumentPath = @"C:\Dev\SourceFileTemplate.docx";
+            string destinationDocumentPath = @"C:\Dev\DestinationFileTemplate.docx";
+
+            CreateTableOpenXmlWithStyle.GenerateDocumentFromTemplate(sourceDocumentPath, destinationDocumentPath);
+
+            //CreateTableOpenXmlWithStyle.UpdateWordDocument(@"C:\Dev\TableTemplate.docx");
+            
+            
+            //OpenXmlTableTheme openXmlTableTheme=new OpenXmlTableTheme();
+            //openXmlTableTheme.CreatePackage(documentPath);
             ////HelloWorld(documentPath);
             //using (WordprocessingDocument package =
             //    WordprocessingDocument.Create(
