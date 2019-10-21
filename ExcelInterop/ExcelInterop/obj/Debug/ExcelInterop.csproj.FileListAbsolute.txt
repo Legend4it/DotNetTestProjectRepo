@@ -1,7 +1,0 @@
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\bin\Debug\ExcelInterop.exe.config
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\bin\Debug\ExcelInterop.exe
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\bin\Debug\ExcelInterop.pdb
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.csprojAssemblyReference.cache
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.csproj.CoreCompileInputs.cache
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.exe
-C:\Dev\TestProject\ExcelInterop\ExcelInterop\obj\Debug\ExcelInterop.pdb
