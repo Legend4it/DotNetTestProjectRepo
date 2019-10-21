@@ -67,7 +67,7 @@ namespace WordDocumentGenerator
 
         public Table GenerateTable()
         {
-            var table = CreateTableStyle();
+            var table = CreateTableWithStyle();
 
 
             AddItemsToTable(table);
@@ -76,7 +76,7 @@ namespace WordDocumentGenerator
             return table;
         }
 
-        private static Table CreateTableStyle()
+        private static Table CreateTableWithStyle()
         {
             //create table object 
             Table table1 = new Table();
