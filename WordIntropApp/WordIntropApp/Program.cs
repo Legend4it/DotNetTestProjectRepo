@@ -14,51 +14,56 @@ namespace WordIntropApp
 
         private static string SetWordObject()
         {
-            var sourceFile = "C:\\Dev\\HidenText.docx";
+            var sourceFile = "C:\\Dev\\Source\\DotNetTestProjectRepo\\WordIntropApp\\WordIntropApp\\Documents\\HidenText.docx";
 
             Application oWord = new Application();
             oWord.DisplayAlerts = WdAlertLevel.wdAlertsNone;
             oWord.Visible = false;
             Document oWordDoc = oWord.Documents.Add(sourceFile);
 
-            //oWordDoc.Range().TextRetrievalMode.IncludeHiddenText = false;
+            oWord.Options.AutoFormatAsYouTypeApplyNumberedLists = true;
+            oWord.Options.AutoFormatApplyLists = true;
+            
+            oWordDoc.Range().TextRetrievalMode.IncludeHiddenText = true;
 
-            var rangeAll = oWordDoc.Range();
-            rangeAll.TextRetrievalMode.IncludeHiddenText = true;
+
 
 
             var controls = oWordDoc.Content.ContentControls;
+            int nr;
             foreach (ContentControl item in controls)
             {
                 //Console.WriteLine(item.PlaceholderText.Value);
                 Console.WriteLine(item.Tag);
+                if (item.Tag!=null && item.Tag.Equals("HideMe"))
+                {
+                    nr = item.Range.ListFormat.ListValue;
+                    //item.Range.ListFormat.RemoveNumbers();
+                    item.Range.Font.Hidden = 1;
+
+                    item.Range.Text = "Lorem Ipsum Hide Me Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.";
+                    item.Range.ListFormat.ApplyNumberDefault(nr);
+
+                }
+
+                if (item.Tag!=null && item.Tag.Equals("ShowMe"))
+                {
+                    item.Range.Font.Hidden = 0;
+                    //item.Range.ListFormat.ApplyNumberDefault();
+                }
+
+                if (item.Tag!=null && item.Tag.Equals("HiddenTag"))
+                {
+                    item.Range.Font.Hidden = 0;
+                }
+                
                 if (item.Range.Font.Hidden !=0)
                 {
                     Console.WriteLine("################  I am Hidden ################");
                 }
             }
             
-
-            foreach (Range p in rangeAll.Words)
-            {
-
-                if (p.Font.Hidden != 0) //Hidden text found
-                {
-                    // Do something
-                    Console.WriteLine("I am Visible ...");
-                }
-            }
-
-
-
-            foreach (Paragraph para in oWordDoc.Paragraphs) // see the change of wordFooter in this line
-            {
-                Range range = para.Range;
-                //Tag position as range start, and next tag position as range end
-                range.SetRange(1, 5);
-                Console.WriteLine(range.Text);
-//                range.Delete();
-            }
+            oWordDoc.Save();
 
             return oWordDoc.FullName;
         }
