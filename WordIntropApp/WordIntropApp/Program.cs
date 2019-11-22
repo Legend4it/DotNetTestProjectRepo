@@ -14,8 +14,8 @@ namespace WordIntropApp
 
         private static string SetWordObject()
         {
-            var sourceFile = "C:\\Dev\\Repo\\DotNetTestProjectRepo\\WordIntropApp\\WordIntropApp\\Documents\\HidenText.docx";
-            //var sourceFile = "C:\\Dev\\Source\\DotNetTestProjectRepo\\WordIntropApp\\WordIntropApp\\Documents\\HidenText.docx";
+            //var sourceFile = "C:\\Dev\\Repo\\DotNetTestProjectRepo\\WordIntropApp\\WordIntropApp\\Documents\\HidenText.docx";
+            var sourceFile = "C:\\Dev\\Source\\DotNetTestProjectRepo\\WordIntropApp\\WordIntropApp\\Documents\\HidenText.docx";
 
             Application oWord = new Application();
             oWord.DisplayAlerts = WdAlertLevel.wdAlertsNone;
@@ -37,6 +37,22 @@ namespace WordIntropApp
                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
 
+
+            foreach (Paragraph paragraph in oWordDoc.Paragraphs)
+            {
+                var prg = paragraph;
+                if (prg.Range.Find.Execute("Lorem Ipsum Hide Me"))
+                {
+                    var prevRange = oWordDoc.Range(rngFind.Start, rngFind.End).Previous();
+                    var nextRange = oWordDoc.Range(rngFind.Start, rngFind.End).Next();
+                    paragraph.Range.InsertBefore("Hello New Line ############ 02 ############");
+                    paragraph.Range.ListFormat.ApplyNumberDefault();
+                    //nextRange.InsertAfter("Hello New Line");
+                    oWordDoc.Save();
+
+                }
+            }
+            
 
             var controls = oWordDoc.Content.ContentControls;
             int nr;
