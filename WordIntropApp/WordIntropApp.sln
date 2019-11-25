@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordIntropApp", "WordIntropApp\WordIntropApp.csproj", "{023A9231-C333-4FF7-B3D8-5D19EBA60CAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagsEditorV01", "TagsEditor\TagsEditorV01.csproj", "{06FBD093-AD6D-4726-80BD-7BE641FE64EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagEditorV02", "TagEditorV02\TagEditorV02.csproj", "{CDB32C96-D83B-45F9-A118-F39301ECDA5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{023A9231-C333-4FF7-B3D8-5D19EBA60CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{023A9231-C333-4FF7-B3D8-5D19EBA60CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{023A9231-C333-4FF7-B3D8-5D19EBA60CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06FBD093-AD6D-4726-80BD-7BE641FE64EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06FBD093-AD6D-4726-80BD-7BE641FE64EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06FBD093-AD6D-4726-80BD-7BE641FE64EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06FBD093-AD6D-4726-80BD-7BE641FE64EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB32C96-D83B-45F9-A118-F39301ECDA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB32C96-D83B-45F9-A118-F39301ECDA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB32C96-D83B-45F9-A118-F39301ECDA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB32C96-D83B-45F9-A118-F39301ECDA5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
