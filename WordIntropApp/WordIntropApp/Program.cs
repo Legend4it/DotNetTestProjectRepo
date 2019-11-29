@@ -33,6 +33,7 @@ namespace WordIntropApp
                         foreach (ContentControl control in storyRangeControls)
                         {
                             var x = control.Tag;
+                            Console.WriteLine(x);
                         }
                     }
                 }
