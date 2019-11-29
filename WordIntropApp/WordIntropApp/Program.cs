@@ -7,11 +7,65 @@ namespace WordIntropApp
     {
         static void Main(string[] args)
         {
-            
+            GetHeaderAndFooter();
             Console.WriteLine($"Test Word Introp Object:{SetWordObject()}");
             Console.ReadLine();
         }
+        private static void GetHeaderAndFooter() {
+            string str = "";
+            var sourceFile = "C:\\Dev\\HidenText.docx";
 
+            Application oWord = new Application();
+            oWord.DisplayAlerts = WdAlertLevel.wdAlertsNone;
+            oWord.Visible = false;
+            Document oWordDoc = oWord.Documents.Add(sourceFile);
+            //Get storyRanges from document for header and footer properties
+            StoryRanges storyRanges = oWordDoc.StoryRanges;
+
+            foreach (Range storyRange in storyRanges)
+            {
+                ContentControls storyRangeControls = storyRange.ContentControls;
+
+                if (storyRangeControls != null)
+                {
+                    if (storyRangeControls.Count > 0)
+                    {
+                        foreach (ContentControl control in storyRangeControls)
+                        {
+                            var x = control.Tag;
+                        }
+                    }
+                }
+            }
+            //foreach (Section Section in oWordDoc.Sections)
+            //{
+
+
+            //    foreach (Microsoft.Office.Interop.Word.HeaderFooter header in Section.Headers)
+
+            //        if (header.Exists)
+            //        {
+            //            header.Range.Words.First.Select();
+
+            //            str += header.Range.Text + System.Environment.NewLine;
+
+
+
+            //        }
+
+            //    foreach (HeaderFooter Footer in Section.Footers)
+
+            //        if (Footer.Exists)
+            //        {
+            //            Footer.Range.Words.First.Select();
+
+            //            str += Footer.Range.Text + System.Environment.NewLine;
+
+            //        }
+            //}
+
+            Console.WriteLine(str);
+        }
         private static string SetWordObject()
         {
             //var sourceFile = "C:\\Dev\\Repo\\DotNetTestProjectRepo\\WordIntropApp\\WordIntropApp\\Documents\\HidenText.docx";
@@ -48,7 +102,7 @@ namespace WordIntropApp
                     paragraph.Range.InsertBefore("Hello New Line ############ 02 ############");
                     paragraph.Range.ListFormat.ApplyNumberDefault();
                     //nextRange.InsertAfter("Hello New Line");
-                    oWordDoc.Save();
+                    //oWordDoc.Save();
 
                 }
             }
