@@ -85,9 +85,9 @@ namespace WordIntropApp
 
             //Find range by text
             bool wasFound = false;
-            object missing = System.Type.Missing;
-            Microsoft.Office.Interop.Word.Range rngFind = oWordDoc.Content;
-            object oEnd = Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd;
+            object missing = Type.Missing;
+            Range rngFind = oWordDoc.Content;
+            object oEnd = WdCollapseDirection.wdCollapseEnd;
             wasFound = rngFind.Find.Execute("Just Test Text!", ref missing, ref missing,
                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
