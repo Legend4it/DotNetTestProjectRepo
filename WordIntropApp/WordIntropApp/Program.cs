@@ -13,7 +13,8 @@ namespace WordIntropApp
         }
         private static void GetHeaderAndFooter() {
             string str = "";
-            var sourceFile = "C:\\Dev\\HidenText.docx";
+            //var sourceFile = "C:\\Dev\\HidenText.docx";
+            var sourceFile = "C:\\Users\\SEAAN0\\Work Folders\\DevServer\\FL_Quote_Template_FoodTech_V1.0-WithComment-MyVersion.docx";
 
             Application oWord = new Application();
             oWord.DisplayAlerts = WdAlertLevel.wdAlertsNone;
@@ -38,6 +39,7 @@ namespace WordIntropApp
                     }
                 }
             }
+            #region hide-code
             //foreach (Section Section in oWordDoc.Sections)
             //{
 
@@ -64,7 +66,7 @@ namespace WordIntropApp
 
             //        }
             //}
-
+            #endregion
             Console.WriteLine(str);
         }
         private static string SetWordObject()
