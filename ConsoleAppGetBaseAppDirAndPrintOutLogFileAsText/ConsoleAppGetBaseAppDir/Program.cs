@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ConsoleAppGetBaseAppDir
@@ -27,9 +28,11 @@ namespace ConsoleAppGetBaseAppDir
             sb.Append("#### LOG FILE #### START ####");
             sb.Append(txt);
             sb.Append("#### END ####");
+            Console.WriteLine($"#### LOG FILE #### START #### {sb} #### END ####");
 
-            
-            Console.WriteLine(sb);
+
+            var outTextByte = Encoding.UTF8.GetBytes(sb.ToString());
+            var outText = Convert.ToBase64String(outTextByte);
 
             Console.ReadKey();
 
