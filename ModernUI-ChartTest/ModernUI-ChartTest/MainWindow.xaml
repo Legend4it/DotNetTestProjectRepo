@@ -12,7 +12,22 @@
             x:Name="StackedBarChart"
                               ChartTitle="Sales Chart" ChartSubTitle="Territory wise sales Chart">
             <ModernChart:StackedBarChart.Series>
-                <ModernChart:ChartSeries DisplayMember="Name" ValueMember="Sales" ItemsSource="{Binding SeriesData}"/>
+                <ModernChart:ChartSeries
+                                        Caption="Errors"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding Path=Errors}" />
+                <ModernChart:ChartSeries
+                                        Caption="Warnings"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding Path=Warnings}" />
+                <ModernChart:ChartSeries
+                                        Caption="Done"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding Path=Done}" />
+
             </ModernChart:StackedBarChart.Series>
         </ModernChart:StackedBarChart>
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +32,11 @@ namespace ModernUI_ChartTest
             get;
             set;
         }
+        public ObservableCollection<TestClass> Done
+        {
+            get;
+            set;
+        }
 
         public ObservableCollection<TestClass> Warnings
         {
@@ -50,6 +54,8 @@ namespace ModernUI_ChartTest
 
             Errors = new ObservableCollection<TestClass>();
             Warnings = new ObservableCollection<TestClass>();
+            Done = new ObservableCollection<TestClass>();
+
 
             Errors.Add(new TestClass() { Category = "Globalization", Number = 66 });
             Errors.Add(new TestClass() { Category = "Features", Number = 23 });
@@ -65,46 +71,22 @@ namespace ModernUI_ChartTest
             Warnings.Add(new TestClass() { Category = "Naming", Number = 56 });
             Warnings.Add(new TestClass() { Category = "Best Practices", Number = 34 });
 
+            Done.Add(new TestClass() { Category = "Globalization", Number = 66 });
+            Done.Add(new TestClass() { Category = "Features", Number = 23 });
+            Done.Add(new TestClass() { Category = "Content Types", Number = 12 });
+            Done.Add(new TestClass() { Category = "Correctness", Number = 94 });
+            Done.Add(new TestClass() { Category = "Naming", Number = 45 });
+            Done.Add(new TestClass() { Category = "Best Practices", Number = 29 });
+
             Series.Add(new SeriesData() { DisplayName = "Errors", Items = Errors });
             Series.Add(new SeriesData() { DisplayName = "Warnings", Items = Warnings });
+            Series.Add(new SeriesData() { DisplayName = "Warnings", Items = Done });
+
 
             this.DataContext = this;
 
             //this.StackedBarChart.DataContext=this;
         }
-    }
-
-    public class TestClass : INotifyPropertyChanged
-    {
-        public string Category { get; set; }
-
-        private float _number = 0;
-        public float Number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                _number = value;
-                if (PropertyChanged != null)
-                {
-                    this.PropertyChanged(this, new PropertyChangedEventArgs("Number"));
-                }
-            }
-
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-    }
-    public class SeriesData
-    {
-        public string DisplayName { get; set; }
-
-        public string Description { get; set; }
-
-        public ObservableCollection<TestClass> Items { get; set; }
     }
 
 
