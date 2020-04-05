@@ -1,0 +1,36 @@
+﻿<Window x:Class="ModernUI_ChartTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModernUI_ChartTest"
+        xmlns:ModernChart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="mainGrid">
+        <ModernChart:StackedBarChart
+            x:Name="StackedBarChart"
+                              ChartTitle="Sales Chart" ChartSubTitle="Territory wise sales Chart">
+            <ModernChart:StackedBarChart.Series>
+                <ModernChart:ChartSeries
+                                        Caption="Errors"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding Path=Errors}" />
+                <ModernChart:ChartSeries
+                                        Caption="Warnings"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding Path=Warnings}" />
+                <ModernChart:ChartSeries
+                                        Caption="Done"
+                                        DisplayMember="Category"
+                                        ValueMember="Number"
+                                        ItemsSource="{Binding Path=Done}" />
+
+            </ModernChart:StackedBarChart.Series>
+        </ModernChart:StackedBarChart>
+
+        <Label Content="{Binding test}"/>
+    </Grid>
+</Window>
