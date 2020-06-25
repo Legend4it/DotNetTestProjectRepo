@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using Newtonsoft.Json;
+using StarBcrApi.Models;
 using System.Web.Http;
 
 namespace StarBcrApi.Controllers
@@ -18,9 +15,10 @@ namespace StarBcrApi.Controllers
 
         // POST api/bcrcode
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(object value)
         {
             //TODO: implemet some logic using value
+            var data = JsonConvert.DeserializeObject<RequestContent>(value.ToString());
         }
 
     }

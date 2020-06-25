@@ -9,16 +9,23 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Configuration;
 using System.Text;
+using FortusPOSClient.Model;
+using System.Drawing;
+using System.Drawing.Printing;
 
 namespace FortusPOSClient
 {
     public partial class MainWindow : Window
     {
         private IPort port;
+        private string tGuid;
+        private string tName;
 
         public MainWindow()
         {
             InitializeComponent();
+            tGuid= Guid.NewGuid().ToString();
+            txtPrinterGuid.Content = tGuid;
             InitViewAsync();
         }
 
@@ -29,7 +36,7 @@ namespace FortusPOSClient
             foreach (PortInfo item in Factory.I.SearchPrinter(PrinterInterfaceType.USBPrinterClass))
             {
                 port = Factory.I.GetPort(item.PortName, "USBPRN", 1000);
-                
+                tName = item.ModelName;
                 txtInfo.Text = $"Version:{Factory.I.GetStarIOVersion()},{Environment.NewLine}ModelName:{item.ModelName},{Environment.NewLine}PortName:{item.PortName},{Environment.NewLine}USBSerialNumber:{item.USBSerialNumber},{Environment.NewLine}MacAddress:{item.MacAddress},{Environment.NewLine}HashCode:{Factory.I.GetHashCode()}";
             }
 
@@ -67,18 +74,18 @@ namespace FortusPOSClient
 
         private void BarcodeReader()
         {
-            var bcrCode= BarCodeFactory.MonitoringBarcodeReader(port).Trim();
+            var bcrCode = BarCodeFactory.MonitoringBarcodeReader(port).Trim();
             // get the user input for every iteration, allowing to exit at will
             lblDcrCode.Content = bcrCode;
             BarCodeFactory.ClearBarcodeReaderBuffer(port);
             if (!string.IsNullOrWhiteSpace(bcrCode))
             {
-                PostBcrCodeToApi(bcrCode);
+                PostBcrCodeToApi(new RequestContent { BcrCode=bcrCode, TerminalGuid=tGuid, TerminalName=tName, RelPartnerId=11 });
             }
         }
 
 
-        private void PostBcrCodeToApi(string bcrcode)
+        private void PostBcrCodeToApi(RequestContent rContent)
         {
 
             HttpClient client = new HttpClient();
@@ -87,10 +94,11 @@ namespace FortusPOSClient
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var content = new StringContent(bcrcode, Encoding.UTF8, "application/json");
+            var data = JsonConvert.SerializeObject(rContent);
+            var content = new StringContent(data, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = client.PostAsync(apiUrl + "/?code=", content).Result;
+                HttpResponseMessage response = client.PostAsync(apiUrl, content).Result;
 
                 //if (response.IsSuccessStatusCode)
                 //{
@@ -101,12 +109,27 @@ namespace FortusPOSClient
                 //    MessageBox.Show("Send Failed...");
                 //}
 
+                //Test Print to mPOP 10
+                //PrintTestBcrCode(rContent);
             }
             catch (Exception ex)
             {
 
                 throw new Exception(ex.Message);
             }
+        }
+
+        private void PrintTestBcrCode(RequestContent rContent)
+        {
+            var font = new Font("Arial", 10);
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = rContent.TerminalName;
+            pd.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
+            {
+                e1.Graphics.DrawString(rContent.BcrCode, new Font("Times New Roman", 12), new SolidBrush(Color.Black), new RectangleF(0, 0, pd.DefaultPageSettings.PrintableArea.Width, pd.DefaultPageSettings.PrintableArea.Height));
+
+            };
+            pd.Print();
         }
     }
 }
