@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertManagment", "CertManagment\CertManagment.csproj", "{00FE6D0D-7DAE-489D-9DA3-9465F3EF2007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{E99022E0-2789-4F8B-B538-E0A85EBFC439}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00FE6D0D-7DAE-489D-9DA3-9465F3EF2007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FE6D0D-7DAE-489D-9DA3-9465F3EF2007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FE6D0D-7DAE-489D-9DA3-9465F3EF2007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FE6D0D-7DAE-489D-9DA3-9465F3EF2007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99022E0-2789-4F8B-B538-E0A85EBFC439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99022E0-2789-4F8B-B538-E0A85EBFC439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99022E0-2789-4F8B-B538-E0A85EBFC439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99022E0-2789-4F8B-B538-E0A85EBFC439}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA52D3F5-DBD1-4F07-BF60-B1B4E48BF04C}
+	EndGlobalSection
+EndGlobal

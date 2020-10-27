@@ -12,6 +12,7 @@ using System.Text;
 using FortusPOSClient.Model;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Diagnostics;
 
 namespace FortusPOSClient
 {
@@ -24,7 +25,7 @@ namespace FortusPOSClient
         public MainWindow()
         {
             InitializeComponent();
-            tGuid= Guid.NewGuid().ToString();
+            tGuid = Guid.NewGuid().ToString();
             txtPrinterGuid.Content = tGuid;
             InitViewAsync();
         }
@@ -35,9 +36,10 @@ namespace FortusPOSClient
 
             foreach (PortInfo item in Factory.I.SearchPrinter(PrinterInterfaceType.USBPrinterClass))
             {
-                port = Factory.I.GetPort(item.PortName, "USBPRN", 1000);
+                var portSetting = item.PortName.Split(':')[0];
+                port = Factory.I.GetPort(item.PortName, portSetting/*"USBPRN"*/, 1000);
                 tName = item.ModelName;
-                txtInfo.Text = $"Version:{Factory.I.GetStarIOVersion()},{Environment.NewLine}ModelName:{item.ModelName},{Environment.NewLine}PortName:{item.PortName},{Environment.NewLine}USBSerialNumber:{item.USBSerialNumber},{Environment.NewLine}MacAddress:{item.MacAddress},{Environment.NewLine}HashCode:{Factory.I.GetHashCode()}";
+                txtInfo.Text = $"Version:{Factory.I.GetStarIOVersion()}{Environment.NewLine}ModelName:{item.ModelName}{Environment.NewLine}PortName:{item.PortName}{Environment.NewLine}PortSetting:{portSetting}{Environment.NewLine}USBSerialNumber:{item.USBSerialNumber}{Environment.NewLine}MacAddress:{item.MacAddress}{Environment.NewLine}HashCode:{Factory.I.GetHashCode()}";
             }
 
             var dueTime = TimeSpan.FromSeconds(1);
@@ -80,7 +82,7 @@ namespace FortusPOSClient
             BarCodeFactory.ClearBarcodeReaderBuffer(port);
             if (!string.IsNullOrWhiteSpace(bcrCode))
             {
-                PostBcrCodeToApi(new RequestContent { BcrCode=bcrCode, TerminalGuid=tGuid, TerminalName=tName, RelPartnerId=11 });
+                PostBcrCodeToApi(new RequestContent { BcrCode = bcrCode, TerminalGuid = tGuid, TerminalName = tName, RelPartnerId = 11 }); //Test partner id, need to identify artikel by partner and Barcode 
             }
         }
 
@@ -100,22 +102,13 @@ namespace FortusPOSClient
             {
                 HttpResponseMessage response = client.PostAsync(apiUrl, content).Result;
 
-                //if (response.IsSuccessStatusCode)
-                //{
-                //    MessageBox.Show("Send Successfully");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Send Failed...");
-                //}
-
                 //Test Print to mPOP 10
                 //PrintTestBcrCode(rContent);
             }
             catch (Exception ex)
             {
-
-                throw new Exception(ex.Message);
+                Debugger.Log(1, "Exception", ex.Message.ToString());
+                //throw new Exception(ex.Message);
             }
         }
 
