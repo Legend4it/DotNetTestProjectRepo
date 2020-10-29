@@ -28,8 +28,11 @@ namespace P400
                     .AddEcrCapability(EcrCapabilitiesType.CashierStatus)
                     .AddEcrCapability(EcrCapabilitiesType.CashierError)
                     .AddEcrCapability(EcrCapabilitiesType.PrinterReceipt)
-                    //.AddEcrCapability(EcrCapabilitiesType.SignatureCapture)
-                    //.AddEcrCapability(EcrCapabilitiesType.SignatureVerification)
+                    .AddEcrCapability(EcrCapabilitiesType.SignatureCapture)
+                    .AddEcrCapability(EcrCapabilitiesType.SignatureVerification)
+                    .AddEcrCapability(EcrCapabilitiesType.PrinterDocument)
+                    .AddEcrCapability(EcrCapabilitiesType.TerminalReplication)
+                    .AddEcrCapability(EcrCapabilitiesType.CustomerInput)
                     .EcrLanguage(LanguageType.English)
                     .Build();
 
@@ -41,6 +44,8 @@ namespace P400
             }
         }
 
+        /**
+         * ecrTransactionId: Transaction-Id ?????*/
         public static TransactionParameters GetTransactionParameters(string ecrId, string ecrTransactionId, decimal amount, CurrencyType currencyType)
         {
             try

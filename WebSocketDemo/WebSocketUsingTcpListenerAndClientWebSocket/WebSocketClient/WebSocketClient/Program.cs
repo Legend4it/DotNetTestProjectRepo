@@ -10,11 +10,22 @@ using System.Threading.Tasks;
 //Client Demo APP
 namespace WebSocketClient
 {
+
+
+    public class MessageData {
+        public string OrderNr { get; set; } = "12345";
+        public string Amout { get; set; } = "100";
+        public string PartnerId { get; set; } = "1";
+        
+    }
     class Program
     {
+
         static void Main(string[] args)
         {
-            Connect("172.31.79.166", "Hello from Client...!");
+            var jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new MessageData());
+            //Connect("172.31.79.166", "Hello from Client...!");
+            Connect("172.31.79.166", jsonMessage);
         }
 
         static void Connect(String server, String message)

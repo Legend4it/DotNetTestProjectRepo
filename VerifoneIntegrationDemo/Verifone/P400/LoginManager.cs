@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using Verifone.Vim.Api;
 using Verifone.Vim.Api.Common;
@@ -12,7 +13,8 @@ namespace P400
     {
         IVimApi _vimApi;
         LoginParameters parameter;
-        
+        Logger log = LogManager.GetCurrentClassLogger();
+
         public LoginManager(IVimApi vimApiInstance)
         {
             _vimApi = vimApiInstance;
