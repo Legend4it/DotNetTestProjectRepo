@@ -18,7 +18,10 @@ namespace P400
         IVimApi _vimApi;
         PrintParameters parameter;
         Logger log = LogManager.GetCurrentClassLogger();
-
+        public PrintManager()
+        {
+            _vimApi = TerminalApi.TerminalApiInstance;
+        }
         public PrintManager(IVimApi vimApiInstance)
         {
             _vimApi = vimApiInstance;

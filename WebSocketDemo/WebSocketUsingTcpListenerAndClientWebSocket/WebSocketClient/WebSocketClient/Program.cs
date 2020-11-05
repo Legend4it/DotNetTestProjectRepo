@@ -4,20 +4,46 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
 //Client Demo APP
 namespace WebSocketClient
 {
+
+
+    public class RequestObject
+    {
+        public string OrderNr { get; set; } = "12345";
+        public string Amout { get; set; } = "100";
+        public string PartnerId { get; set; } = "1";
+        public string EcrId { get; set; } = "EcrA";
+        public string RequestType { get; set; } = string.Empty;
+        public string ResultObject { get; set; } = string.Empty;
+
+    }
     class Program
     {
+
         static void Main(string[] args)
         {
-            Connect("172.31.79.166", "Hello from Client...!");
+            for (int i = 0; i < 1; i++)
+            {
+                var jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject());
+                SendRequest("192.168.0.66", jsonMessage);
+
+                Thread.Sleep(500);
+
+                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { RequestType = "Result" });
+                SendRequest("192.168.0.66", jsonMessage);
+
+            }
+
+            Console.ReadKey();
         }
 
-        static void Connect(String server, String message)
+        static void SendRequest(String server, String message)
         {
             try
             {
@@ -45,7 +71,7 @@ namespace WebSocketClient
                 // Receive the TcpServer.response.
 
                 // Buffer to store the response bytes.
-                data = new Byte[256];
+                data = new Byte[2048];
 
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;

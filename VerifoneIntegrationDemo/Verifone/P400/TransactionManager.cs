@@ -24,14 +24,16 @@ namespace P400
         IVimApi _vimApi;
         TransactionParameters parameter;
         Logger log = LogManager.GetCurrentClassLogger();
+        PrintManager printManager;
 
         public TransactionManager(IVimApi vimApiInstance)
         {
             _vimApi = vimApiInstance;
+            printManager = new PrintManager();
         }
         public void StartTransaction()
         {
-            parameter = ParametersService.GetTransactionParameters("EcrA", "123",100,CurrencyType.SEK);
+            parameter = ParametersService.GetTransactionParameters("EcrA", "12345",100,CurrencyType.SEK);
             _vimApi.StartTransaction(parameter, this);
         }
 
