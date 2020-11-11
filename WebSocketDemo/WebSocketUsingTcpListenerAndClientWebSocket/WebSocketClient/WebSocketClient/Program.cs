@@ -21,6 +21,7 @@ namespace WebSocketClient
         public string EcrId { get; set; } = "EcrA";
         public string RequestType { get; set; } = string.Empty;
         public string ResultObject { get; set; } = string.Empty;
+        public string ApprovalCode { get; internal set; }
 
     }
     class Program
@@ -29,6 +30,7 @@ namespace WebSocketClient
         static void Main(string[] args)
         {
             for (int i = 0; i < 1; i++)
+            
             {
                 var jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject());
                 SendRequest("192.168.0.66", jsonMessage);
@@ -36,9 +38,12 @@ namespace WebSocketClient
                 Thread.Sleep(500);
 
                 jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { RequestType = "Result" });
-                SendRequest("192.168.0.66", jsonMessage);
+            SendRequest("192.168.0.66", jsonMessage);
 
             }
+
+
+            //Thread.Sleep(500);
 
             Console.ReadKey();
         }
@@ -71,7 +76,7 @@ namespace WebSocketClient
                 // Receive the TcpServer.response.
 
                 // Buffer to store the response bytes.
-                data = new Byte[2048];
+                data = new Byte[3000];
 
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
