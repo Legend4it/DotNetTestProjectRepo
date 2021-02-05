@@ -43,7 +43,8 @@ namespace P400
 
 
             var transactionManager = new TransactionManager(TerminalApi.TerminalApiInstance);
-            transactionManager.StartTransaction();
+            //transactionManager.StartTransaction();
+            transactionManager.StartRefund();
 
 
         }

@@ -12,6 +12,8 @@ namespace P400
         {
             //var vimStart = new VimService();
             var vimStart = new VimManager();
+
+            Console.ReadKey();
         }
     }
 }

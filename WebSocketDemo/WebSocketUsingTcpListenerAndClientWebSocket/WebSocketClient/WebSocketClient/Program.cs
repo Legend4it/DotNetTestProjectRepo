@@ -22,6 +22,7 @@ namespace WebSocketClient
         public string RequestType { get; set; } = string.Empty;
         public string ResultObject { get; set; } = string.Empty;
         public string ApprovalCode { get; internal set; }
+        public bool Refound { get; set; } = false;
 
     }
     class Program
@@ -33,12 +34,24 @@ namespace WebSocketClient
             
             {
                 var jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject());
+                //SendRequest("192.168.0.66", jsonMessage);
+
+                //Thread.Sleep(500);
+
+                //jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { RequestType = "Result" });
+                //SendRequest("192.168.0.66", jsonMessage);
+
+                //Thread.Sleep(500);
+
+                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { OrderNr= "1003192192", Refound = false });
                 SendRequest("192.168.0.66", jsonMessage);
+                //SendRequest("172.31.79.183", jsonMessage);
 
                 Thread.Sleep(500);
 
-                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { RequestType = "Result" });
-            SendRequest("192.168.0.66", jsonMessage);
+                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { OrderNr = "1003192192",RequestType = "Result" });
+                SendRequest("192.168.0.66", jsonMessage);
+                //SendRequest("172.31.79.183", jsonMessage);
 
             }
 
@@ -76,7 +89,7 @@ namespace WebSocketClient
                 // Receive the TcpServer.response.
 
                 // Buffer to store the response bytes.
-                data = new Byte[3000];
+                data = new Byte[5000];
 
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
