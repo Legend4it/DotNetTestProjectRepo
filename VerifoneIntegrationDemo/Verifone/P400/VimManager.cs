@@ -17,6 +17,7 @@ namespace P400
     {
         IVim vim;
         IVimApi terminalApi;
+        Terminal terminal;
         Logger log = LogManager.GetCurrentClassLogger();
         public VimManager()
         {
@@ -134,9 +135,9 @@ namespace P400
         {
 
             // Get VimApi instance for interacting with the payment terminal
-            Terminal terminal = readyEvent.Terminal;
+            terminal = readyEvent.Terminal;
+            
             TerminalApi.TerminalApiInstance = terminal.GetVimApi(this);
-
 
             var loginManager = new LoginManager(TerminalApi.TerminalApiInstance);
             loginManager.Login();
