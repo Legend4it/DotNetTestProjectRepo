@@ -44,13 +44,13 @@ namespace WebSocketClient
                 //Thread.Sleep(500);
 
                 jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { OrderNr= "1003192192", Refound = false });
-                SendRequest("192.168.1.169", jsonMessage);
+                SendRequest("85.8.7.15", jsonMessage);
                 //SendRequest("172.31.79.183", jsonMessage);
 
                 Thread.Sleep(500);
 
                 jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { OrderNr = "1003192192",RequestType = "Result" });
-                SendRequest("192.168.1.169", jsonMessage);
+                SendRequest("85.8.7.15", jsonMessage);
                 //SendRequest("172.31.79.183", jsonMessage);
 
             }
@@ -69,7 +69,7 @@ namespace WebSocketClient
                 // Note, for this client to work you need to have a TcpServer
                 // connected to the same address as specified by the server, port
                 // combination.
-                //Int32 port = 13000;
+                //Int32 port = 13000; //Terminal Port
                 Int32 port = 10000;
                 TcpClient client = new TcpClient();
                 client.Connect(server, port);

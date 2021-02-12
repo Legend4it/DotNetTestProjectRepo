@@ -17,7 +17,8 @@ namespace WebSocketDemo
 
         private static void ClientStart()
         {
-            string ip = "172.31.79.166";
+            //string ip = "172.31.79.166";
+            string ip = "172.31.77.12";
             int port = 8080;
             var server = new TcpListener(IPAddress.Parse(ip), port);
 

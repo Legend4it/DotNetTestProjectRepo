@@ -28,7 +28,7 @@ namespace WebSocketStartStopTcpListner
         {
             _ct = new CancellationToken();
             _cts = new CancellationTokenSource();
-            _listener = new TcpListener(IPAddress.Parse("192.168.0.66"), 13000);
+            _listener = new TcpListener(IPAddress.Parse("192.168.1.163"), 11000);
 
         }
 

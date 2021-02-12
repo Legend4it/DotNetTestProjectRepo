@@ -31,7 +31,7 @@ namespace TcpListnerIpFromHost
 
             TcpClient tcpClient = new TcpClient();
             IPAddress ipAddress2 = Dns.GetHostEntry("posdev.fortusinternational.com").AddressList[0];
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress2, 13000);
+            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress2, 11000);
 
             tcpClient.Connect(ipEndPoint);
         }
