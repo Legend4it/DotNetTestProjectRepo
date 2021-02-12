@@ -25,7 +25,7 @@ namespace WebSocketServer
             {
                 // Set the TcpListener on port 13000.
                 //Int32 port = 13000; //Terminal Port
-                Int32 port = 10000;
+                Int32 port = 11000;
                 IPAddress localAddr = IPAddress.Parse("0.0.0.0"); //Allowed all clinet to connect to this server on same port
                 //IPAddress localAddr = IPAddress.Parse("192.168.1.169");
 
