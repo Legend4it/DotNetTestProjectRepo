@@ -21,6 +21,8 @@ namespace WebSocketClient
         public string EcrId { get; set; } = "EcrA";
         public string RequestType { get; set; } = string.Empty;
         public string ResultObject { get; set; } = string.Empty;
+        public string ApprovalCode { get; internal set; }
+        public bool Refound { get; set; } = false;
 
     }
     class Program
@@ -29,16 +31,32 @@ namespace WebSocketClient
         static void Main(string[] args)
         {
             for (int i = 0; i < 1; i++)
+            
             {
                 var jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject());
-                SendRequest("192.168.0.66", jsonMessage);
+                //SendRequest("192.168.0.66", jsonMessage);
+
+                //Thread.Sleep(500);
+
+                //jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { RequestType = "Result" });
+                //SendRequest("192.168.0.66", jsonMessage);
+
+                //Thread.Sleep(500);
+
+                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { OrderNr= "1003192192", Refound = false });
+                SendRequest("85.8.7.15", jsonMessage);
+                //SendRequest("172.31.79.183", jsonMessage);
 
                 Thread.Sleep(500);
 
-                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { RequestType = "Result" });
-                SendRequest("192.168.0.66", jsonMessage);
+                jsonMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new RequestObject() { OrderNr = "1003192192",RequestType = "Result" });
+                SendRequest("85.8.7.15", jsonMessage);
+                //SendRequest("172.31.79.183", jsonMessage);
 
             }
+
+
+            //Thread.Sleep(500);
 
             Console.ReadKey();
         }
@@ -51,7 +69,8 @@ namespace WebSocketClient
                 // Note, for this client to work you need to have a TcpServer
                 // connected to the same address as specified by the server, port
                 // combination.
-                Int32 port = 13000;
+                //Int32 port = 13000; //Terminal Port
+                Int32 port = 10000;
                 TcpClient client = new TcpClient();
                 client.Connect(server, port);
 
@@ -71,7 +90,7 @@ namespace WebSocketClient
                 // Receive the TcpServer.response.
 
                 // Buffer to store the response bytes.
-                data = new Byte[2048];
+                data = new Byte[5000];
 
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;

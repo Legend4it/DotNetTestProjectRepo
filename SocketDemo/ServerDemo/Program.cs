@@ -2,7 +2,9 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
+//Server
 namespace TcpClientListener
 {
     class Program
@@ -10,7 +12,7 @@ namespace TcpClientListener
         static int Main(string[] args)
         {
             StartListening(Dns.GetHostName(), 11000);
-            //StartListening("127.0.0.1", 11000);
+            //StartListening("localhost", 11000);
             return 0;
         }
 
@@ -26,7 +28,7 @@ namespace TcpClientListener
             // Dns.GetHostName returns the name of the
             // host running the application.  
             IPHostEntry ipHostInfo = Dns.GetHostEntry(host);
-            IPAddress ipAddress = ipHostInfo.AddressList[2];
+            IPAddress ipAddress = ipHostInfo.AddressList[1];
             Console.WriteLine($"Server IP:{ipAddress}");
 
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, port);
@@ -55,6 +57,13 @@ namespace TcpClientListener
                     {
                         int bytesRec = handler.Receive(bytes);
                         data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        // Show the data on the console.  
+                        Console.WriteLine("Text received : {0}", data);
+
+                        // Echo the data back to the client.  
+                        byte[] replay = Encoding.ASCII.GetBytes(data);
+
+                        handler.Send(replay);
                         if (data.IndexOf("<EOF>") > -1)
                         {
                             break;

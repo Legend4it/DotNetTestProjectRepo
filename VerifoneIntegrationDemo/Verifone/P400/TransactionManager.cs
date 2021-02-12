@@ -33,6 +33,11 @@ namespace P400
         }
         public void StartTransaction()
         {
+            parameter = ParametersService.CreateRefundParameters();
+            _vimApi.StartTransaction(parameter, this);
+        }
+        public void StartRefund()
+        {
             parameter = ParametersService.GetTransactionParameters("EcrA", "12345",100,CurrencyType.SEK);
             _vimApi.StartTransaction(parameter, this);
         }

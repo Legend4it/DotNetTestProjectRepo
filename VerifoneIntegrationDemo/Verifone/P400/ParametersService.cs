@@ -13,7 +13,7 @@ namespace P400
 {
     public static class ParametersService
     {
-        public static LoginParameters GetLoginParameters(string ecrId,string ecrSerial)
+        public static LoginParameters GetLoginParameters(string ecrId, string ecrSerial)
         {
             try
             {
@@ -90,6 +90,18 @@ namespace P400
                 // Invalid argument provided
                 throw new Exception(e.Message);
 
+            }
+        }
+
+        public static TransactionParameters CreateRefundParameters()
+        {
+            try { 
+                return new TransactionParameters.RefundBuilder().EcrId("EcrA").EcrTransactionId(new TransactionId("124", DateTime.Now)).Amount(271).Currency(CurrencyType.SEK).Build(); 
+            }
+            catch (ArgumentException e)
+            {
+                // Invalid argument provided 
+                throw new ArgumentException(e.Message);
             }
         }
 
