@@ -68,9 +68,9 @@ namespace P400
             {
                 // Construct TerminalInformation instance
                 TerminalInformation terminalInformation = new TerminalInformation.Builder()
-                .SerialNumber("346-742-881")
+                .SerialNumber("803-678-919")
                 .TerminalConnection(new TcpTerminalConnection.Builder()
-                .SocketAddress(new IPEndPoint(IPAddress.Parse("172.31.79.202"), 9000))
+                .SocketAddress(new IPEndPoint(IPAddress.Parse("192.168.1.241"), 9600))
                 .ConnectionInitiationType(ConnectionInitiationType.EcrInitiated)
                 .ConnectionManagementType(ConnectionManagementType.ConnectionPerSession
                )

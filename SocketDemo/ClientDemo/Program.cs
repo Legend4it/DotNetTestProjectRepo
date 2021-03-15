@@ -37,18 +37,20 @@ namespace TcpClient
                 }
                 IPAddress ipAddress = ipHostInfo.AddressList[0];
 
-                IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
-                //IPEndPoint remoteIp = new IPEndPoint(IPAddress.Parse("172.31.77.12"), port);
+                //IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
+                IPEndPoint remoteIp = new IPEndPoint(IPAddress.Parse("185.248.53.20"), port);
 
                 // Create a TCP/IP  socket.  
-                Socket sender = new Socket(ipAddress.AddressFamily,
-                    SocketType.Stream, ProtocolType.Tcp);
-                
+                //Socket sender = new Socket(ipAddress.AddressFamily,
+                //    SocketType.Stream, ProtocolType.Tcp);
+                Socket sender = new Socket(AddressFamily.InterNetwork,
+                              SocketType.Stream, ProtocolType.Tcp);
+
                 // Connect the socket to the remote endpoint. Catch any errors.  
                 try
                 {
                     
-                    sender.Connect(endPoint);
+                    sender.Connect(remoteIp);
 
                     Console.WriteLine("Socket connected to {0}",
                         sender.RemoteEndPoint.ToString());
