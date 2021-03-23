@@ -71,6 +71,8 @@ namespace WebSocketServer
                         // Send back a response.
                         stream.Write(msg, 0, msg.Length);
                         Console.WriteLine("Sent: {0}", data);
+                        
+                        SentTestMessageToClient(stream, "Transaction:10SEK");
                     }
 
                     // Shutdown and end connection
@@ -91,6 +93,10 @@ namespace WebSocketServer
             Console.Read();
 
         }
-        
+
+        private static void SentTestMessageToClient(NetworkStream stream, string message)
+        {
+            stream.Write(System.Text.Encoding.ASCII.GetBytes(message), 0, System.Text.Encoding.ASCII.GetBytes(message).Length);
+        }
     }
 }
